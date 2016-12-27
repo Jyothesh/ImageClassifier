@@ -42,8 +42,8 @@ public class VisualRecognitionExample {
 //	    System.out.println(foo);
 
 	    System.out.println("Classify using the 'Car' classifier");
-	    options = new ClassifyImagesOptions.Builder().images(new File("src/test/resources/visual_recognition/car.png"))
-	        .classifierIds("car").build();
+	    options = new ClassifyImagesOptions.Builder().images(new File("src/test/resources/visual_recognition/images.jpg"))
+	        .classifierIds("foo_177686944").build();
 	    result = service.classify(options).execute();
 	    System.out.println(result);
 
