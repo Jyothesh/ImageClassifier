@@ -3,30 +3,33 @@ package com.ibm.watson.visualrecognition.app;
 import java.io.File;
 
 import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifierOptions;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyImagesOptions;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassification;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifier;
+import com.ibm.watson.visualrecognition.util.PropertyUtil;
 
 public class VisualRecognitionExample {
 
 	public static void main(String[] args) {
 		VisualRecognition service = new VisualRecognition(VisualRecognition.VERSION_DATE_2016_05_20);
-		service.setApiKey("78aac70be9e2f86936f750d3c9b5b3121f2a617a");
+		service.setApiKey(PropertyUtil.getInstance().getValue("bluemix.apikey"));
 
-		//	    System.out.println("Classify an image");
-		//	    ClassifyImagesOptions options =
-		//	        new ClassifyImagesOptions.Builder().images(new File("src/test/resources/visual_recognition/car.png")).build();
-		//	    VisualClassification result = service.classify(options).execute();
-		//	    System.out.println(result);
+				System.out.println("Classify an image");
+				ClassifyImagesOptions options =
+						new ClassifyImagesOptions.Builder().images(new File("src/test/resources/visual_recognition/prolineShirt.jpg")).build();
+				VisualClassification result = service.classify(options).execute();
+				System.out.println(result);
 
-//		service.deleteClassifier("proline_798492643").execute();
+		//		service.deleteClassifier("proline_798492643").execute();
 		//System.out.println(service.getClassifiers().execute());
 
 		//Proline classification
-//		System.out.println("Classify an image");
-//		ClassifyImagesOptions options =
-//				new ClassifyImagesOptions.Builder().images(new File("src/test/resources/visual_recognition/prolineShirt.jpg")).build();
-//		VisualClassification result = service.classify(options).execute();
-//		System.out.println(result);
+		//		System.out.println("Classify an image");
+		//		ClassifyImagesOptions options =
+		//				new ClassifyImagesOptions.Builder().images(new File("src/test/resources/visual_recognition/prolineShirt.jpg")).build();
+		//		VisualClassification result = service.classify(options).execute();
+		//		System.out.println(result);
 
 
 //		System.out.println("Create a classifier with positive and negative images");
@@ -39,19 +42,19 @@ public class VisualRecognitionExample {
 
 		//Proline classification
 		System.out.println("Classify proline full sleeve image");
-		ClassifyImagesOptions options = 
+		 options = 
 				new ClassifyImagesOptions.Builder().images(new File("src/test/resources/visual_recognition/proline/fullsleeve.jpg"))
 				.classifierIds("proline_1743651630").build();
-		VisualClassification result = service.classify(options).execute();
+		 result = service.classify(options).execute();
 		System.out.println(result);
-		
+
 		System.out.println("Classify proline half sleeve image");
 		options = 
 				new ClassifyImagesOptions.Builder().images(new File("src/test/resources/visual_recognition/proline/halfsleeve.jpg"))
 				.classifierIds("proline_1743651630").build();
 		result = service.classify(options).execute();
 		System.out.println(result);
-		
+
 
 		//	    System.out.println("Classify using the 'Car' classifier");
 		//	    options = new ClassifyImagesOptions.Builder().images(new File("src/test/resources/visual_recognition/images.jpg"))
